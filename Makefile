@@ -7,5 +7,3 @@ Assignment2: $(FILES)
 	$(CC) $(CC_FLAGS) -o $(OUT_EXE) $(FILES)
 
 dice.o : Game_Functions.h
-
-

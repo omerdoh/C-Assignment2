@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <time.h>s
 
 #define WON 0
 #define LOSE 1
@@ -32,7 +32,7 @@ extern int total, pointMatch, win, lose, totalAmountChanged , roundBet, currentH
 /*******************************************************************************************************************************/
 int rollDice () {
     int dice = (1 + rand() % 6);
-	return dice;	
+    return dice;    
 }
                         
 /*******************************************************************************************************************************/
@@ -44,69 +44,69 @@ int rollDice () {
 /* Nathan Fan, Sifat Jamaly */
 /*******************************************************************************************************************************/
 int playGame() {
-	
-	int dice1, dice2, sum, pointMatch, stopPlaying, rollNum = 1;
+    
+    int dice1, dice2, sum, pointMatch, stopPlaying, rollNum = 1;
 
-	/*seeding random number with time so its different each time*/
-	srand(time(NULL));
-	printf("\n                     ROLL THE DICE [ENTER]\n\n");
+    /*seeding random number with time so its different each time*/
+    srand(time(NULL));
+    printf("\n                     ROLL THE DICE [ENTER]\n\n");
 
-	/*roll the two dice and add the results*/ 
-	dice1 = rollDice();
-	dice2 = rollDice();
-	sum = dice1 + dice2;
-	pointMatch = sum;
+    /*roll the two dice and add the results*/ 
+    dice1 = rollDice();
+    dice2 = rollDice();
+    sum = dice1 + dice2;
+    pointMatch = sum;
 
-	/*print statement with format*/
-	printf("------------------------------------------------------------------------\n");
-	printf(" ROLL NUM     DICE #1     DICE #2     TOTAL ROLL     POINT MATCH\n");
-	printf("------------------------------------------------------------------------\n");
+    /*print statement with format*/
+    printf("------------------------------------------------------------------------\n");
+    printf(" ROLL NUM     DICE #1     DICE #2     TOTAL ROLL     POINT MATCH\n");
+    printf("------------------------------------------------------------------------\n");
 
-	/*printing the numbers so far*/
-	printf("%9d %11d %11d              %d              %d\n", rollNum, dice1, dice2, sum, pointMatch);
+    /*printing the numbers so far*/
+    printf("%9d %11d %11d              %d              %d\n", rollNum, dice1, dice2, sum, pointMatch);
 
-	/*win if first roll is a 7 or 11*/
-	if (sum == 7 || sum == 11) {
-		printf("\nCongratulations you roll %10d and WON at your first try" , sum);
-		win++;			
-		return WON;
-	
-	/*game is lost if roll is 2, 3, or 12*/			
-   	} else if (sum == 2 || sum == 3 || sum == 12) {
-		printf("\nSorry, you roll %10d and you lose!!!" , sum);
-		lose++;				
-		return LOSE;
-				
-	} else {
-		/*if neither top conditions activate*/
-		/*the pointMatch is used*/
-        rollNum = 1;	
-		do {
-			dice1 = rollDice();
-			dice2 = rollDice();
-			sum = dice1 + dice2;
-			rollNum++;
+    /*win if first roll is a 7 or 11*/
+    if (sum == 7 || sum == 11) {
+        printf("\nCongratulations you roll %d and WON at your first try" , sum);
+        win++;          
+        return WON;
+    
+    /*game is lost if roll is 2, 3, or 12*/         
+    } else if (sum == 2 || sum == 3 || sum == 12) {
+        printf("\nSorry, you roll %d and you lose!!!" , sum);
+        lose++;             
+        return LOSE;
+                
+    } else {
+        /*if neither top conditions activate*/
+        /*the pointMatch is used*/
+        rollNum = 1;    
+        do {
+            dice1 = rollDice();
+            dice2 = rollDice();
+            sum = dice1 + dice2;
+            rollNum++;
 
-			printf("        %d           %d           %d              %d              %d				\n", rollNum, dice1, dice2, sum, pointMatch);
+            printf("        %d           %d           %d              %d              %d                \n", rollNum, dice1, dice2, sum, pointMatch);
 
             /* losing conditions */
-			if (sum == 2 || sum == 3 || sum == 12) {
-				printf("\nSorry, you roll %10d and you lose!!!" , sum);
-				lose++;				
-				return LOSE;
+            if (sum == 2 || sum == 3 || sum == 12) {
+                printf("\nSorry, you roll %d and you lose!!!" , sum);
+                lose++;             
+                return LOSE;
 
             /* winning conditions */
-			} else if (sum == pointMatch) {
-				printf("\nCongratulations! You have won with a roll of %3d." ,							sum);
-				win++;						
-				return WON;	
-	    	}
-		
-		/*keep playing until win or lose condition*/				
-		} while (stopPlaying != WON || stopPlaying != LOSE);			
-				
-		return;			
-	}		
+            } else if (sum == pointMatch) {
+                printf("\nCongratulations! You have won with a roll of %d." ,                          sum);
+                win++;                      
+                return WON; 
+            }
+        
+        /*keep playing until win or lose condition*/                
+        } while (stopPlaying != WON || stopPlaying != LOSE);            
+                
+        return;         
+    }       
 }
 
 /*******************************************************************************************************************************/
@@ -144,10 +144,10 @@ void bettingChanges(int result){
 /*******************************************************************************************************************************/
 void endingMessages(){
     /*Exiting message*/
-	printf("\n\nThank you for playing!\n");
-	printf("You won %1d games and lost %d games!\n", win, lose);
+    printf("\n\nThank you for playing!\n");
+    printf("You won %1d games and lost %d games!\n", win, lose);
     printf("\nA total of $%d amount was won/lost in %d rounds.", totalAmountChanged, win+lose);
 
-	/* statement depending on win/loss */
-   	(win > lose) ? (printf("\nWhat a winner!\n")) : (printf("\nBetter luck next time!\n")) ;
+    /* statement depending on win/loss */
+    (win > lose) ? (printf("\nWhat a winner!\n")) : (printf("\nBetter luck next time!\n")) ;
 }

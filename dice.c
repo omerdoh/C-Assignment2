@@ -25,12 +25,12 @@ int total, win = 0, lose = 0, totalAmountChanged = 0, roundBet, currentHolding =
 /* Nathan Fan, Sifat Jamaly */
 /*******************************************************************************************************************************/
 int main () {
-   	char decide; 
-   
+   	char decide;    
+       
     /* loops until user quits */
     do{
         printf("\n\nCurrent holdings: $%d", currentHolding) ;
-        
+       
         /* player lacks the holdings to play */
         if (currentHolding <= 0){ 
             printf("\nPlayer does not have the necessary funds to continue. Exiting.");
@@ -39,12 +39,12 @@ int main () {
 
         /* ask user to play and get answer */
         (win + lose == 0) ? (printf("\nWould you like to play? [y/n]: ")) : (printf("\nAnother Game? [y/n]: ")) ;
-        decide = getchar();
+        scanf(" %c", &decide);
         
         /* flush out unnecessary input */
         int ignore;
-        while ( (ignore = getchar()) != '\n' && ignore != EOF );
-
+        while ((ignore = getchar()) != '\n' && ignore != EOF ) {continue; }
+       
         /* user chooses to play */
         if (decide == 'y' || decide == 'Y'){
 
@@ -55,6 +55,7 @@ int main () {
                 /* ensure numeric bet */
                 if ( scanf("%d", &roundBet) != 1 ){
                     printf("\nPlease enter integer input\n");
+                    int ignore;
                     while ( (ignore = getchar()) != '\n' && ignore != EOF );
                     continue;
                 }
@@ -68,7 +69,7 @@ int main () {
         }
         /* extraneous choice */
         else if (decide != 'y' && decide != 'Y' && decide != 'n' && decide != 'N'){
-            printf("\nPlease only enter y for continue and n for quit");
+            printf("\nPlease only enter y for new game and n for quit");
         }
 
     } while (decide != 'n' && decide != 'N');
